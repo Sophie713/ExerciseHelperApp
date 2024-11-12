@@ -17,7 +17,7 @@ import com.sophiemiller.exercisehelperapp.data.TABLE_NAME_EXC_SETS
 data class ExerciseSet(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
-    val exercisesInTheSet: List<Int>,
+    val exercisesInTheSet: SingleSet,
     val defaultSetDuration: Int,
     val defaultSetBreakTime: Int,
     val overrideExerciseTimeValues : Boolean = false,

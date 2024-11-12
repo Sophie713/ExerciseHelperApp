@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    kotlin("kapt")
 }
 
 android {
@@ -50,9 +51,14 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     // koin DI
-    implementation( "io.insert-koin:koin-androidx-compose:3.2.0")
+    implementation( "io.insert-koin:koin-androidx-compose:3.1.0")
 
     //ROOM
-    implementation ("androidx.room:room-runtime:2.2.5")
-    annotationProcessor( "androidx.room:room-compiler:2.2.5")
+    implementation("androidx.room:room-runtime:2.6.0")
+    kapt("androidx.room:room-compiler:2.6.0")
+    implementation("androidx.room:room-ktx:2.6.0")
+
+    // Gson dependency
+    implementation("com.google.code.gson:gson:2.10.1")
+
 }
