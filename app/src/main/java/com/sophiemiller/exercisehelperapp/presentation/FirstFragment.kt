@@ -1,45 +1,30 @@
 package com.sophiemiller.exercisehelperapp.presentation
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
-import com.sophiemiller.exercisehelperapp.R
-import com.sophiemiller.exercisehelperapp.databinding.FragmentFirstBinding
+import androidx.compose.ui.platform.ComposeView
+import com.sophiemiller.exercisehelperapp.presentation.abstractClasses.BaseFragment
+import com.sophiemiller.exercisehelperapp.presentation.compose.screens.AddExerciseScreen
+import com.sophiemiller.exercisehelperapp.presentation.viewModel.AddExerciseViewModel
 
-/**
- * A simple [Fragment] subclass as the default destination in the navigation.
- */
-class FirstFragment : Fragment() {
+class FirstFragment : BaseFragment() {
 
-    private var _binding: FragmentFirstBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+    private val viewModel: AddExerciseViewModel by viewModel()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
-        _binding = FragmentFirstBinding.inflate(inflater, container, false)
-        return binding.root
-
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        binding.buttonFirst.setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+        return ComposeView(requireContext()).apply {
+            setContent {
+                GetScrollableScreen(
+                    { AddExerciseScreen(viewModel) }
+                )
+            }
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }
