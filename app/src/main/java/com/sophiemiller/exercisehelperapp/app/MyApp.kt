@@ -1,4 +1,4 @@
-package com.sophiemiller.exercisehelperapp.base
+package com.sophiemiller.exercisehelperapp.app
 
 import android.app.Application
 import com.sophiemiller.exercisehelperapp.data.di.databaseModule

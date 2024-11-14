@@ -4,9 +4,21 @@ import com.sophiemiller.exercisehelperapp.data.dao.ExerciseSetDao
 import com.sophiemiller.exercisehelperapp.data.entities.ExerciseSet
 
 
-class ExerciseSetsRepository(private val exerciseSetsDao: ExerciseSetDao) {
-
-    fun saveSet(newSet : ExerciseSet) {
-        exerciseSetsDao.insertExerciseSet(newSet)
+class ExerciseSetsRepository(private val exerciseSetsDaoImpl: ExerciseSetDao) : ExerciseSetDao {
+    override fun saveExercise(exercise: ExerciseSet) {
+        exerciseSetsDaoImpl.saveExercise(exercise)
     }
+
+    override fun getAllExerciseSets(): List<ExerciseSet> {
+        return exerciseSetsDaoImpl.getAllExerciseSets()
+    }
+
+    override fun getExerciseSetById(id: Int): ExerciseSet? {
+        return exerciseSetsDaoImpl.getExerciseSetById(id)
+    }
+
+    override fun deleteAllExerciseSets() {
+        exerciseSetsDaoImpl.deleteAllExerciseSets()
+    }
+
 }

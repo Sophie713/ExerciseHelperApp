@@ -12,13 +12,13 @@ import kotlinx.coroutines.flow.Flow
 interface ExerciseDao {
 
     @Insert(onConflict = REPLACE)
-    fun insertExercise(exercise: SingleExercise)
+    fun saveExercise(exercise: SingleExercise)
 
     @Query("SELECT * FROM $TABLE_NAME_EXERCISES")
-    fun getAllExercises(): Flow<List<SingleExercise>?>
+    fun getAllExercises(): List<SingleExercise>
 
     @Query("SELECT * FROM $TABLE_NAME_EXERCISES WHERE id = :id")
-    fun getExerciseById(id: Int): Flow<SingleExercise?>
+    fun getExerciseById(id: Int): SingleExercise?
 
     @Query("DELETE FROM $TABLE_NAME_EXERCISES")
     fun deleteAllExercises()

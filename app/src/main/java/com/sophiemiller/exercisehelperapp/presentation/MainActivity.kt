@@ -30,32 +30,7 @@ class MainActivity : AppCompatActivity() {
 
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         appBarConfiguration = AppBarConfiguration(navController.graph)
-        setupActionBarWithNavController(navController, appBarConfiguration)
-
-
-
-        lifecycleScope.launch(Dispatchers.IO) {
-            val exercises = listOf("Plank", "Push-ups", "Pull-ups", "Hand waves", "Downward dog")
-            exercises.forEachIndexed { i, exe ->
-                viewModel.saveExercise(SingleExercise(id = i, exerciseName = exe))
-            }
-            viewModel.saveSet(
-                ExerciseSet(
-                    id = 0,
-                    exercisesInTheSet = SingleSet(listOf(1, 2, 5)),
-                    defaultSetDuration = 10,
-                    defaultSetBreakTime = 10
-                )
-            )
-            viewModel.saveSet(
-                ExerciseSet(
-                    id = 0,
-                    exercisesInTheSet = SingleSet(listOf(1, 3, 4, 5)),
-                    defaultSetDuration = 10,
-                    defaultSetBreakTime = 10
-                )
-            )
-        }
+      //  setupActionBarWithNavController(navController, appBarConfiguration)
     }
 
 }
