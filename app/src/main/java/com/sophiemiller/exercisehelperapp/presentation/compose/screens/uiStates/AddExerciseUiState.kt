@@ -1,9 +1,9 @@
 package com.sophiemiller.exercisehelperapp.presentation.compose.screens.uiStates
 
 data class AddExerciseUiState (
-    val exerciseName: String = "",
-    val duration: Int = 0,
-    val breakTime: Int = 0,
+    val exerciseName: String? = null,
+    val duration: Int? = null,
+    val breakTime: Int? = null,
     val showLoading:Boolean = false,
     val showErrorDialog : Boolean = false
 )

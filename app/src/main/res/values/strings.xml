@@ -3,4 +3,11 @@
     <string name="app_name">Exercise Helper</string>
     <string name="fragment_add_exercise">Add Exercise</string>
     <string name="fragment_add_exercise_set">Add Exercise Set</string>
+    <string name="add_exercise_title">Add an exercise</string>
+    <string name="add_exercise_desc">Add a new exercise. You may also add a default length of performing the exercise and default length of a break afterwards. If no values are added, values will be set from the exercise set.</string>
+    <string name="add_exercise_exercise_name">Exercise name</string>
+    <string name="add_exercise_add_new_exercise">Add new exercise</string>
+    <string name="add_exercise_duration_hint">Optional: exercise duration in seconds</string>
+    <string name="add_exercise_break_hint">Optional: break after exercise in seconds</string>
+    <string name="add_exercise_save">Save</string>
 </resources>
