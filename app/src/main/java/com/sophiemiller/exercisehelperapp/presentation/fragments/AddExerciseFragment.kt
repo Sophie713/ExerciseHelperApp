@@ -1,4 +1,4 @@
-package com.sophiemiller.exercisehelperapp.presentation
+package com.sophiemiller.exercisehelperapp.presentation.fragments
 
 import android.os.Bundle
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -10,7 +10,7 @@ import com.sophiemiller.exercisehelperapp.presentation.abstractClasses.BaseFragm
 import com.sophiemiller.exercisehelperapp.presentation.compose.screens.AddExerciseScreen
 import com.sophiemiller.exercisehelperapp.presentation.viewModel.AddExerciseViewModel
 
-class FirstFragment : BaseFragment() {
+class AddExerciseFragment : BaseFragment() {
 
     private val viewModel: AddExerciseViewModel by viewModel()
 

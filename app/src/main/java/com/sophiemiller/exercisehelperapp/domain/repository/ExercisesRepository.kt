@@ -2,10 +2,8 @@ package com.sophiemiller.exercisehelperapp.domain.repository
 
 import com.sophiemiller.exercisehelperapp.data.dao.ExerciseDao
 import com.sophiemiller.exercisehelperapp.data.entities.SingleExercise
-import com.sophiemiller.exercisehelperapp.domain.repository.interfaces.ExercisesRepository
-import kotlinx.coroutines.flow.Flow
 
-class ExercisesRepositoryImpl(private val exercisesDaoImpl: ExerciseDao) : ExerciseDao {
+class ExercisesRepository(private val exercisesDaoImpl: ExerciseDao) : ExerciseDao {
 
 
     override fun saveExercise(exercise: SingleExercise) {

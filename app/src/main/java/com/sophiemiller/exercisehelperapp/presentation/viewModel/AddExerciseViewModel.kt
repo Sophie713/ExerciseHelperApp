@@ -1,19 +1,14 @@
 package com.sophiemiller.exercisehelperapp.presentation.viewModel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.sophiemiller.exercisehelperapp.data.MY_TAG
 import com.sophiemiller.exercisehelperapp.data.entities.SingleExercise
-import com.sophiemiller.exercisehelperapp.domain.repository.ExercisesRepositoryImpl
+import com.sophiemiller.exercisehelperapp.domain.repository.ExercisesRepository
 import com.sophiemiller.exercisehelperapp.presentation.compose.screens.uiStates.AddExerciseUiState
 import com.sophiemiller.exercisehelperapp.presentation.viewModel.events.AddExerciseVmEvent
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.stateIn
 
-class AddExerciseViewModel(private val repository: ExercisesRepositoryImpl) : ViewModel() {
+class AddExerciseViewModel(private val repository: ExercisesRepository) : ViewModel() {
 
     private val _addExerciseUiState: MutableStateFlow<AddExerciseUiState> =
         MutableStateFlow(AddExerciseUiState())

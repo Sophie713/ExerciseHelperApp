@@ -10,7 +10,7 @@ import com.sophiemiller.exercisehelperapp.data.entities.ExerciseSet
 @Dao
 interface ExerciseSetDao {
     @Insert(onConflict = REPLACE)
-    fun saveExercise(exercise: ExerciseSet)
+    fun saveExerciseSet(exercise: ExerciseSet)
 
     @Query("SELECT * FROM $TABLE_NAME_EXC_SETS")
     fun getAllExerciseSets() : List<ExerciseSet>

@@ -4,10 +4,10 @@ import androidx.lifecycle.ViewModel
 import com.sophiemiller.exercisehelperapp.data.entities.ExerciseSet
 import com.sophiemiller.exercisehelperapp.data.entities.SingleExercise
 import com.sophiemiller.exercisehelperapp.domain.repository.ExerciseSetsRepository
-import com.sophiemiller.exercisehelperapp.domain.repository.ExercisesRepositoryImpl
+import com.sophiemiller.exercisehelperapp.domain.repository.ExercisesRepository
 
 class MainViewModel(
-    private val repository: ExercisesRepositoryImpl,
+    private val repository: ExercisesRepository,
     private val repository2: ExerciseSetsRepository
 ) : ViewModel() {
 
@@ -16,6 +16,6 @@ class MainViewModel(
     }
 
     fun saveSet(newSet: ExerciseSet) {
-        repository2.saveSet(newSet)
+        repository2.saveExerciseSet(newSet)
     }//todo xyz viewmodel scope not found
 }
