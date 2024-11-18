@@ -13,17 +13,22 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
+import com.sophiemiller.exercisehelperapp.R
+import com.sophiemiller.exercisehelperapp.presentation.compose.screens.uiStates.stateMappers.getBreakText
+import com.sophiemiller.exercisehelperapp.presentation.compose.screens.uiStates.stateMappers.getDurationText
+import com.sophiemiller.exercisehelperapp.presentation.compose.views.LargeSpacer
+import com.sophiemiller.exercisehelperapp.presentation.compose.views.SmallSpacer
+import com.sophiemiller.exercisehelperapp.presentation.viewModel.AddExerciseSetViewModel
 
 @Composable
-fun CreateExerciseSetScreen() {
-    var number1 by remember { mutableStateOf("") }
-    var number2 by remember { mutableStateOf("") }
-    var showDialog by remember { mutableStateOf(false) }
-    val itemList = remember { mutableStateListOf("Item 1", "Item 2", "Item 3") }
+fun CreateExerciseSetScreen(viewModel: AddExerciseSetViewModel) {
+
+    val uiState = viewModel.exerciseSetUIState.collectAsState()
 
     Column(
         modifier = Modifier
@@ -32,15 +37,17 @@ fun CreateExerciseSetScreen() {
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         // Title
+        LargeSpacer()
         Text(
-            text = "Screen Title",
+            text = stringResource(R.string.create_set_title),
             fontSize = 24.sp,
             style = MaterialTheme.typography.titleLarge
         )
 
         // Description
+        SmallSpacer()
         Text(
-            text = "This is a description of the screen.",
+            text = stringResource(R.string.create_set_desc),
             style = MaterialTheme.typography.bodyMedium
         )
 
@@ -50,34 +57,35 @@ fun CreateExerciseSetScreen() {
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Text(text = "Items List")
-            IconButton(onClick = { itemList.add("New Item ${itemList.size + 1}") }) {
+            Text(text = stringResource(R.string.create_set_list_title))
+            IconButton(onClick = { /** todo xyz show dialog of exercises and enable selecting */ }) {
                 Icon(
                     imageVector = Icons.Default.Add,
-                    contentDescription = "Add item"
+                    contentDescription = stringResource(R.string.create_set_add)
                 )
             }
         }
 
-        // Display the list of items
+        // Display the list of selected exercises
         LazyColumn(modifier = Modifier.height(150.dp)) {
-            items(itemList) { item ->
-                Text(text = item, modifier = Modifier.padding(4.dp))
+            items(uiState.value.listExercisesInSet) { item ->
+                Text(text = item.exerciseName, modifier = Modifier.padding(4.dp))
             }
         }
 
-        // Number input fields
+        // Default exercise time
         OutlinedTextField(
-            value = number1,
-            onValueChange = { number1 = it },
+            value = uiState.value.getDurationText(),
+            onValueChange = { /** todo xyz send update */ },
             label = { Text("Number 1") },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             modifier = Modifier.fillMaxWidth()
         )
 
+        // Default break time
         OutlinedTextField(
-            value = number2,
-            onValueChange = { number2 = it },
+            value = uiState.value.getBreakText(),
+            onValueChange = { /** todo xyz send update */ },
             label = { Text("Number 2") },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             modifier = Modifier.fillMaxWidth()
@@ -85,16 +93,16 @@ fun CreateExerciseSetScreen() {
 
         // Button to open the dialog
         Button(
-            onClick = { showDialog = true },
+            onClick = { /** todo xyz save set */ },
             modifier = Modifier.fillMaxWidth()
         ) {
             Text("Open Dialog")
         }
 
         // Overlay scrollable dialog
-        if (showDialog) {
+        if (uiState.value.showExercisesDialog) {
             Dialog(
-                onDismissRequest = { showDialog = false }
+                onDismissRequest = { /** todo xyz hide dialog */ }
             ) {
                 Surface(
                     modifier = Modifier
@@ -109,27 +117,30 @@ fun CreateExerciseSetScreen() {
                             .fillMaxWidth()
                     ) {
                         Text(
-                            text = "Select an Item",
+                            text = stringResource(R.string.create_set_dialog_title),
                             fontSize = 20.sp,
                             modifier = Modifier.padding(bottom = 8.dp)
                         )
 
                         LazyColumn(modifier = Modifier.height(200.dp)) {
-                            items(itemList) { item ->
+                            uiState.value.listAllSavedExercises?.let { allExercises ->
+                            items(allExercises) { item ->
                                 Text(
-                                    text = item,
+                                    text = item.exerciseName, //todo xyz build whole text via mapper
                                     modifier = Modifier
                                         .fillMaxWidth()
-                                        .clickable { /* Handle item click */ }
+                                        .clickable { /* todo xyz add to list of selected exercises */ }
                                         .padding(8.dp)
                                 )
+                            }} ?: run {
+                                //todo xyz show loading
                             }
                         }
 
-                        Spacer(modifier = Modifier.height(16.dp))
+                        LargeSpacer()
 
                         Button(
-                            onClick = { showDialog = false },
+                            onClick = { /** close dialog + update list now ??*/ },
                             modifier = Modifier.align(Alignment.End)
                         ) {
                             Text("Close")

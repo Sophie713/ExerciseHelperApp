@@ -2,10 +2,8 @@ package com.sophiemiller.exercisehelperapp.presentation.compose.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
@@ -52,12 +50,12 @@ fun AddExerciseScreen(viewModel: AddExerciseViewModel) {
             style = MaterialTheme.typography.bodyMedium
         )
 
-       MediumSpacer()
+        MediumSpacer()
 
         OutlinedTextField(
             value = uiState.value.getName(),
             onValueChange = { value -> viewModel.onEvent(AddExerciseVmEvent.OnNameChanged(value)) },
-            label = {Text(stringResource(R.string.add_exercise_exercise_name)) },
+            label = { Text(stringResource(R.string.add_exercise_exercise_name)) },
             modifier = Modifier.fillMaxWidth()
         )
 
@@ -66,7 +64,7 @@ fun AddExerciseScreen(viewModel: AddExerciseViewModel) {
         OutlinedTextField(
             value = uiState.value.getDurationText(),
             onValueChange = { value -> viewModel.onEvent(AddExerciseVmEvent.OnDurationChanged(value)) },
-            label =  {Text(stringResource(R.string.add_exercise_duration_hint))} ,
+            label = { Text(stringResource(R.string.add_exercise_duration_hint)) },
             keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
             modifier = Modifier.fillMaxWidth()
         )
@@ -75,8 +73,8 @@ fun AddExerciseScreen(viewModel: AddExerciseViewModel) {
 
         OutlinedTextField(
             value = uiState.value.getBreakText(),
-            onValueChange = { value -> viewModel.onEvent(AddExerciseVmEvent.OnBreakChanged(value))},
-            label = {Text(stringResource(R.string.add_exercise_break_hint))},
+            onValueChange = { value -> viewModel.onEvent(AddExerciseVmEvent.OnBreakChanged(value)) },
+            label = { Text(stringResource(R.string.add_exercise_break_hint)) },
             keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
             modifier = Modifier.fillMaxWidth()
         )
@@ -84,7 +82,7 @@ fun AddExerciseScreen(viewModel: AddExerciseViewModel) {
         MediumSpacer()
 
         Button(
-            onClick = { viewModel.onEvent(AddExerciseVmEvent.OnSubmit)  },
+            onClick = { viewModel.onEvent(AddExerciseVmEvent.OnSubmit) },
             modifier = Modifier.fillMaxWidth()
         ) {
             Text(stringResource(R.string.add_exercise_save))

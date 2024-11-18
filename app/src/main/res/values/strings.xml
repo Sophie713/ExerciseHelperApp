@@ -10,4 +10,9 @@
     <string name="add_exercise_duration_hint">Optional: exercise duration in seconds</string>
     <string name="add_exercise_break_hint">Optional: break after exercise in seconds</string>
     <string name="add_exercise_save">Save</string>
+    <string name="create_set_title">Create an Exercise Set</string>
+    <string name="create_set_desc">Add exercises to your set, select default times and you can start exercising. :)</string>
+    <string name="create_set_list_title">Exercises in this set:</string>
+    <string name="create_set_add">Add Exercise</string>
+    <string name="create_set_dialog_title">Select Exercise to add</string>
 </resources>
