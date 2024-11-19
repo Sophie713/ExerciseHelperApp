@@ -21,9 +21,13 @@ import androidx.compose.ui.window.Dialog
 import com.sophiemiller.exercisehelperapp.R
 import com.sophiemiller.exercisehelperapp.presentation.compose.screens.uiStates.stateMappers.getBreakText
 import com.sophiemiller.exercisehelperapp.presentation.compose.screens.uiStates.stateMappers.getDurationText
+import com.sophiemiller.exercisehelperapp.presentation.compose.screens.uiStates.stateMappers.getName
 import com.sophiemiller.exercisehelperapp.presentation.compose.views.LargeSpacer
+import com.sophiemiller.exercisehelperapp.presentation.compose.views.MediumSpacer
 import com.sophiemiller.exercisehelperapp.presentation.compose.views.SmallSpacer
 import com.sophiemiller.exercisehelperapp.presentation.viewModel.AddExerciseSetViewModel
+import com.sophiemiller.exercisehelperapp.presentation.viewModel.events.AddExerciseVmEvent
+import com.sophiemiller.exercisehelperapp.presentation.viewModel.events.CreateExerciseSetVmEvent
 
 @Composable
 fun CreateExerciseSetScreen(viewModel: AddExerciseSetViewModel) {
@@ -51,6 +55,20 @@ fun CreateExerciseSetScreen(viewModel: AddExerciseSetViewModel) {
             style = MaterialTheme.typography.bodyMedium
         )
 
+        MediumSpacer()
+        OutlinedTextField(
+            value = uiState.value.getName(),
+            onValueChange = { value ->
+                viewModel.onEvent(
+                    CreateExerciseSetVmEvent.OnNameChanged(
+                        value
+                    )
+                )
+            },
+            label = { Text(stringResource(R.string.create_set_name_hint)) },
+            modifier = Modifier.fillMaxWidth()
+        )
+
         // List of items with plus icon
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -58,7 +76,7 @@ fun CreateExerciseSetScreen(viewModel: AddExerciseSetViewModel) {
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(text = stringResource(R.string.create_set_list_title))
-            IconButton(onClick = { /** todo xyz show dialog of exercises and enable selecting */ }) {
+            IconButton(onClick = { viewModel.onEvent(CreateExerciseSetVmEvent.OnAddExercisesClick) }) {
                 Icon(
                     imageVector = Icons.Default.Add,
                     contentDescription = stringResource(R.string.create_set_add)
@@ -76,8 +94,14 @@ fun CreateExerciseSetScreen(viewModel: AddExerciseSetViewModel) {
         // Default exercise time
         OutlinedTextField(
             value = uiState.value.getDurationText(),
-            onValueChange = { /** todo xyz send update */ },
-            label = { Text("Number 1") },
+            onValueChange = { value ->
+                viewModel.onEvent(
+                    CreateExerciseSetVmEvent.OnDurationChanged(
+                        value
+                    )
+                )
+            },
+            label = { Text(stringResource(R.string.create_set_def_time_hint)) },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             modifier = Modifier.fillMaxWidth()
         )
@@ -85,18 +109,23 @@ fun CreateExerciseSetScreen(viewModel: AddExerciseSetViewModel) {
         // Default break time
         OutlinedTextField(
             value = uiState.value.getBreakText(),
-            onValueChange = { /** todo xyz send update */ },
-            label = { Text("Number 2") },
+            onValueChange = { value ->
+                viewModel.onEvent(
+                    CreateExerciseSetVmEvent.OnBreakChanged(
+                        value
+                    )
+                ) },
+            label = { Text(stringResource(R.string.create_set_break_time_hint)) },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             modifier = Modifier.fillMaxWidth()
         )
 
         // Button to open the dialog
         Button(
-            onClick = { /** todo xyz save set */ },
+            onClick = { viewModel.onEvent(CreateExerciseSetVmEvent.OnSaveClick)},
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text("Open Dialog")
+            Text(stringResource(R.string.create_set_save_btn_txt))
         }
 
         // Overlay scrollable dialog
@@ -124,15 +153,16 @@ fun CreateExerciseSetScreen(viewModel: AddExerciseSetViewModel) {
 
                         LazyColumn(modifier = Modifier.height(200.dp)) {
                             uiState.value.listAllSavedExercises?.let { allExercises ->
-                            items(allExercises) { item ->
-                                Text(
-                                    text = item.exerciseName, //todo xyz build whole text via mapper
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .clickable { /* todo xyz add to list of selected exercises */ }
-                                        .padding(8.dp)
-                                )
-                            }} ?: run {
+                                items(allExercises) { item ->
+                                    Text(
+                                        text = item.exerciseName, //todo xyz build whole text via mapper
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .clickable { /* todo xyz add to list of selected exercises */ }
+                                            .padding(8.dp)
+                                    )
+                                }
+                            } ?: run {
                                 //todo xyz show loading
                             }
                         }

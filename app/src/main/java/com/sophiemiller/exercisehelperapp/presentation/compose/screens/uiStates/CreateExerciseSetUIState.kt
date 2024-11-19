@@ -3,7 +3,7 @@ package com.sophiemiller.exercisehelperapp.presentation.compose.screens.uiStates
 import com.sophiemiller.exercisehelperapp.data.entities.SingleExercise
 
 data class CreateExerciseSetUIState(
-    val setName: String? = null,
+    val setsName: String? = null,
     val duration: Int? = null,
     val breakTime: Int? = null,
     val showLoading: Boolean = false,

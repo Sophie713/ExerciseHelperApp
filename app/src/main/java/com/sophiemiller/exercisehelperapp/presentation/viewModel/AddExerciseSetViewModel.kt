@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.sophiemiller.exercisehelperapp.domain.repository.ExerciseSetsRepository
 import com.sophiemiller.exercisehelperapp.domain.repository.ExercisesRepository
 import com.sophiemiller.exercisehelperapp.presentation.compose.screens.uiStates.CreateExerciseSetUIState
+import com.sophiemiller.exercisehelperapp.presentation.viewModel.events.CreateExerciseSetVmEvent
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
@@ -12,4 +13,9 @@ class AddExerciseSetViewModel(private val setsRepository: ExerciseSetsRepository
         MutableStateFlow(CreateExerciseSetUIState())
     val exerciseSetUIState: StateFlow<CreateExerciseSetUIState> = _exerciseSetUIState
 
+    fun onEvent(event : CreateExerciseSetVmEvent) {
+//        when(event){
+//
+//        }
+    }
 }

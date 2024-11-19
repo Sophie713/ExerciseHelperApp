@@ -15,4 +15,8 @@
     <string name="create_set_list_title">Exercises in this set:</string>
     <string name="create_set_add">Add Exercise</string>
     <string name="create_set_dialog_title">Select Exercise to add</string>
+    <string name="create_set_def_time_hint">Default time for each exercise</string>
+    <string name="create_set_break_time_hint">Default time for each break</string>
+    <string name="create_set_name_hint">Name your set</string>
+    <string name="create_set_save_btn_txt">Save set</string>
 </resources>

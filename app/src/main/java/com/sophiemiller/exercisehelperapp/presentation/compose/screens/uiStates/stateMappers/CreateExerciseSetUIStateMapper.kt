@@ -9,3 +9,7 @@ fun CreateExerciseSetUIState.getDurationText(): String {
 fun CreateExerciseSetUIState.getBreakText(): String {
     this.breakTime?.let { return it.toString() } ?: return ""
 }
+
+fun CreateExerciseSetUIState.getName(): String {
+    this.setsName?.let { return it } ?: return ""
+}

@@ -1,6 +1,7 @@
 package com.sophiemiller.exercisehelperapp.presentation
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -9,12 +10,16 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.viewModelScope
 import com.sophiemiller.exercisehelperapp.R
 import com.sophiemiller.exercisehelperapp.data.entities.ExerciseSet
 import com.sophiemiller.exercisehelperapp.data.entities.SingleExercise
 import com.sophiemiller.exercisehelperapp.data.entities.SingleSet
 import com.sophiemiller.exercisehelperapp.presentation.viewModel.MainViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
